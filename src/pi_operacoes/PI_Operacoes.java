@@ -219,6 +219,29 @@ public class PI_Operacoes {
         }
     }
 
+    public void OpRefle(BufferedImage ImagemCarregada) throws IOException {
+
+
+        int largura = ImagemCarregada.getWidth();
+        int altura = ImagemCarregada.getHeight();
+
+        BufferedImage ImagemEspelhada = new BufferedImage(largura, altura,
+                BufferedImage.TYPE_INT_ARGB);
+
+        for (int y = 0; y < altura; y++)
+        {
+            for (int esquerda = 0, direita = largura - 1; esquerda < largura; esquerda++, direita--)
+            {
+
+                int p = ImagemCarregada.getRGB(esquerda, y);
+                ImagemEspelhada.setRGB(direita, y, p);
+            }
+        }
+
+    Cria_Imagem_Alterada(Image_To_Matriz(ImagemEspelhada), "OpEspelhada");
+    }
+
+
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
         PI_Operacoes Executar = new PI_Operacoes();
@@ -226,6 +249,7 @@ public class PI_Operacoes {
         BufferedImage Imagem2 = Executar.abreImagem("2.jpg");
         Executar.OpSoma(Imagem1, Imagem2);
         Executar.OpSub(Imagem1,Imagem2);
+        Executar.OpRefle(Imagem1);
 
 
     }
